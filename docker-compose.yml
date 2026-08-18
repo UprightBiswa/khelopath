@@ -1,0 +1,3 @@
+# Not required for the first milestone.
+# Kept as a placeholder in case local PostgreSQL is needed later.
+services: {}
