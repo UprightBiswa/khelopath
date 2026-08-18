@@ -4,8 +4,9 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { Shell } from "@/components/Shell";
 import { opportunities } from "@/lib/demo-data";
 
-export default function OpportunityDetailsPage({ params }: { params: { id: string } }) {
-  const opportunity = opportunities.find((item) => item.id === params.id);
+export default async function OpportunityDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const opportunity = opportunities.find((item) => item.id === id);
 
   if (!opportunity) {
     notFound();
@@ -75,4 +76,3 @@ export default function OpportunityDetailsPage({ params }: { params: { id: strin
     </Shell>
   );
 }
-
