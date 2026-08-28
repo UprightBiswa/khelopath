@@ -11,3 +11,7 @@ Implemented a navigable Next.js App Router prototype covering landing, onboardin
 ## Task 03
 
 Added Next.js route-handler API placeholders, Prisma schema, Neon environment example, and synthetic database seed plan.
+
+## Task 04
+
+Connected the project structure to Prisma/Neon, added seed data, generated a hero image, added dynamic DB-backed pages, and separated the authority console under `/admin`.

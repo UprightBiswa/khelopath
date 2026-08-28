@@ -28,5 +28,28 @@ npm install
 npm run dev
 ```
 
-The first milestone is UI-first. Database and AI integrations will be connected after the complete journey works with synthetic data.
+## Database Setup
 
+Create a Neon PostgreSQL database and set `DATABASE_URL` in `web/.env`.
+
+```bash
+cd web
+npx prisma db push
+npm run db:seed
+```
+
+The seed script creates synthetic records for the first demo. No real identity, documents, government credentials, OTPs, or payment data are used.
+
+## Demo Routes
+
+- Athlete journey: `/`
+- Onboarding: `/onboarding`
+- Opportunities: `/opportunities`
+- Application tracking: `/track`
+- Grievance: `/grievance`
+- Admin login: `/admin/login`
+- Admin console: `/admin`
+
+## Deployment
+
+Use Vercel with `web` as the project root. See `docs/deployment.md`.

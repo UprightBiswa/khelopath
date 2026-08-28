@@ -1,6 +1,16 @@
 # Database
 
-The target database is Neon PostgreSQL. The first UI milestone uses synthetic in-app data. Prisma migrations will be added when persistence is connected.
+The target database is Neon PostgreSQL. Prisma in `web/prisma/schema.prisma` is the source of truth.
+
+First-time setup:
+
+```bash
+cd web
+npx prisma db push
+npm run db:seed
+```
+
+Use the SQL files here as readable references. Use Prisma commands for the actual application database.
 
 ## Planned Tables
 
@@ -14,4 +24,3 @@ The target database is Neon PostgreSQL. The first UI milestone uses synthetic in
 - application_events
 - grievances
 - grievance_events
-

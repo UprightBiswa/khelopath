@@ -23,7 +23,27 @@ Next.js UI + Route Handlers
 
 The prototype keeps deployment simple while still showing real backend thinking. Next.js handles the frontend and API layer. Neon stores persistent workflow data. Prisma manages schema and migrations. OpenAI powers intent extraction, eligibility explanations, and grievance classification.
 
-## What Is Mocked Initially
+## Data Flow
+
+```text
+Browser
+  |
+  v
+Next.js page or client component
+  |
+  v
+Next.js route handler
+  |
+  v
+Prisma Client
+  |
+  v
+Neon PostgreSQL
+```
+
+The database URL stays server-side. Browser code only calls application APIs such as `/api/opportunities`, `/api/applications`, and `/api/grievances`.
+
+## What Is Mocked
 
 - Government identity
 - Government applications
@@ -32,5 +52,4 @@ The prototype keeps deployment simple while still showing real backend thinking.
 - Authority assignment
 - Notifications
 
-All records are synthetic and clearly labelled.
-
+The app now supports seeded Neon data for opportunities, applications, and grievances. All records remain synthetic and clearly labelled.

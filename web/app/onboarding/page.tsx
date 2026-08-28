@@ -36,7 +36,6 @@ export default function OnboardingPage() {
                   key={sport}
                   type="button"
                 >
-                  {sport === "Cycling" ? "🚴 " : ""}
                   {sport}
                 </button>
               ))}
@@ -86,4 +85,3 @@ export default function OnboardingPage() {
     </Shell>
   );
 }
-

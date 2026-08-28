@@ -1,5 +1,5 @@
-import { AlertTriangle, CheckCircle2, Send } from "lucide-react";
-import { ButtonLink } from "@/components/ButtonLink";
+import { AlertTriangle } from "lucide-react";
+import { CreateGrievanceButton } from "@/components/CreateGrievanceButton";
 import { Shell } from "@/components/Shell";
 import { StepHeader } from "@/components/StepHeader";
 
@@ -59,10 +59,7 @@ export default function GrievancePage() {
               </div>
             </div>
             <div className="mt-6">
-              <ButtonLink href="/grievance/created">
-                <Send className="mr-2 h-4 w-4" aria-hidden="true" />
-                Create grievance
-              </ButtonLink>
+              <CreateGrievanceButton />
             </div>
           </section>
         </div>
@@ -70,4 +67,3 @@ export default function GrievancePage() {
     </Shell>
   );
 }
-

@@ -20,18 +20,70 @@ model User {
   grievances   Grievance[]
 }
 
+model Sport {
+  id            String         @id
+  name          String         @unique
+  icon          String
+  createdAt     DateTime       @default(now())
+  opportunities Opportunity[]
+  centres       SportsCentre[]
+}
+
+model Location {
+  id        String         @id
+  state     String
+  district  String
+  city      String
+  createdAt DateTime       @default(now())
+  centres   SportsCentre[]
+
+  @@unique([state, district, city])
+}
+
+model SportsCentre {
+  id        String   @id
+  name      String
+  sportId   String
+  sport     Sport    @relation(fields: [sportId], references: [id])
+  state     String
+  district  String
+  city      String
+  latitude  Float
+  longitude Float
+  type      String
+  image     String?
+  location  Location @relation(fields: [state, district, city], references: [state, district, city])
+}
+
 model Opportunity {
   id               String        @id
   title            String
   sport            String
+  sportId          String?
+  sportRef         Sport?        @relation(fields: [sportId], references: [id])
   state            String
   district         String?
+  city             String?
   description      String
   organisationType String
   eligibility      String
+  documents        String[]
+  nextSteps        String[]
+  image            String?
+  matchScore       Int           @default(90)
   applicationUrl   String?
   status           String        @default("open")
   applications     Application[]
+  rules            EligibilityRule[]
+}
+
+model EligibilityRule {
+  id            String      @id
+  opportunityId String
+  label         String
+  rule          String
+  plainText     String
+  opportunity   Opportunity @relation(fields: [opportunityId], references: [id])
 }
 
 model Application {
@@ -77,4 +129,3 @@ model GrievanceEvent {
   createdAt   DateTime  @default(now())
   grievance   Grievance @relation(fields: [grievanceId], references: [id])
 }
-

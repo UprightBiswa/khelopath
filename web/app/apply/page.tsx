@@ -1,7 +1,7 @@
 import { CheckCircle2, ClipboardCheck } from "lucide-react";
-import { ButtonLink } from "@/components/ButtonLink";
 import { Shell } from "@/components/Shell";
 import { StepHeader } from "@/components/StepHeader";
+import { SubmitApplicationButton } from "@/components/SubmitApplicationButton";
 
 const sections = ["Personal information", "Sport information", "Documents", "Review"];
 
@@ -34,11 +34,10 @@ export default function ApplyPage() {
             </p>
           </div>
           <div className="mt-6">
-            <ButtonLink href="/track">Submit demo application</ButtonLink>
+            <SubmitApplicationButton />
           </div>
         </div>
       </section>
     </Shell>
   );
 }
-

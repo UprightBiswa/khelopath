@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Badge } from "@/components/Badge";
+import { Footer } from "@/components/Footer";
 
 export function Shell({ children }: { children: React.ReactNode }) {
   return (
@@ -9,11 +10,11 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <Link className="text-lg font-black text-forest" href="/">
             KheloPath
           </Link>
-          <Badge>Prototype · Synthetic data</Badge>
+          <Badge>Prototype - Synthetic data</Badge>
         </div>
       </header>
       {children}
+      <Footer />
     </main>
   );
 }
-
