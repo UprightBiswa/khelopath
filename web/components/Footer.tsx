@@ -15,6 +15,7 @@ export function Footer() {
           <p className="font-black">Demo Journeys</p>
           <div className="mt-3 grid gap-2 text-sm font-semibold text-ink/70">
             <Link href="/onboarding">Athlete onboarding</Link>
+            <Link href="/register">Athlete register</Link>
             <Link href="/opportunities">Opportunities</Link>
             <Link href="/track">Track application</Link>
           </div>

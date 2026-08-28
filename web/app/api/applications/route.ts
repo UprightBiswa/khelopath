@@ -1,4 +1,5 @@
 import { ok } from "@/lib/api-response";
+import { currentUserId } from "@/lib/auth";
 import { hasDatabaseUrl, prisma } from "@/lib/db";
 import { z } from "zod";
 
@@ -32,6 +33,8 @@ export async function GET() {
 export async function POST(request: Request) {
   const body = await request.json().catch(() => ({}));
   const parsed = applicationSchema.parse(body);
+  const sessionUserId = await currentUserId();
+  const userId = sessionUserId ?? parsed.userId;
 
   if (hasDatabaseUrl()) {
     try {
@@ -40,7 +43,7 @@ export async function POST(request: Request) {
         update: { status: "Under verification" },
         create: {
           id: "KP-2026-1042",
-          userId: parsed.userId,
+          userId,
           opportunityId: parsed.opportunityId,
           status: "Under verification",
           events: {

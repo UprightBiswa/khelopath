@@ -1,6 +1,13 @@
 const { PrismaClient } = require("@prisma/client");
+const { randomBytes, scryptSync } = require("node:crypto");
 
 const prisma = new PrismaClient();
+
+function hashPassword(password) {
+  const salt = randomBytes(16).toString("hex");
+  const hash = scryptSync(password, salt, 64).toString("hex");
+  return `${salt}:${hash}`;
+}
 
 async function main() {
   await prisma.sport.upsert({
@@ -28,12 +35,38 @@ async function main() {
 
   await prisma.user.upsert({
     where: { id: "KP-DEMO-USER-001" },
-    update: {},
+    update: {
+      email: "athlete@khelopath.local",
+      role: "athlete"
+    },
     create: {
       id: "KP-DEMO-USER-001",
+      email: "athlete@khelopath.local",
+      passwordHash: hashPassword("12345678"),
+      role: "athlete",
       name: "Demo Athlete",
       age: 21,
       sport: "Cycling",
+      state: "Assam",
+      district: "Kamrup Metropolitan",
+      city: "Guwahati"
+    }
+  });
+
+  await prisma.user.upsert({
+    where: { id: "KP-DEMO-ADMIN-001" },
+    update: {
+      email: "admin@admin.com",
+      role: "admin"
+    },
+    create: {
+      id: "KP-DEMO-ADMIN-001",
+      email: "admin@admin.com",
+      passwordHash: hashPassword("12345678"),
+      role: "admin",
+      name: "KheloPath Admin",
+      age: 30,
+      sport: "Administration",
       state: "Assam",
       district: "Kamrup Metropolitan",
       city: "Guwahati"

@@ -25,6 +25,9 @@ export default function HomePage() {
               Start
               <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
             </ButtonLink>
+            <ButtonLink href="/register" variant="secondary">
+              Create athlete account
+            </ButtonLink>
           </div>
         </div>
         <div className="overflow-hidden rounded-md border border-line bg-white shadow-soft">

@@ -50,6 +50,22 @@ The seed script creates synthetic records for the first demo. No real identity, 
 - Admin login: `/admin/login`
 - Admin console: `/admin`
 
+Prototype admin credentials can be controlled with:
+
+```text
+ADMIN_EMAIL=admin@admin.com
+ADMIN_PASSWORD=12345678
+```
+
+Use a stronger password before sharing the public deployment widely.
+
+Demo athlete account after seeding:
+
+```text
+athlete@khelopath.local
+12345678
+```
+
 ## Deployment
 
 Use Vercel with `web` as the project root. See `docs/deployment.md`.

@@ -20,12 +20,6 @@ export default function AdminLoginPage() {
             <LockKeyhole className="h-5 w-5 text-forest" aria-hidden="true" />
             KheloPath Authority Console
           </h2>
-          <div className="mt-5 grid gap-4">
-            <label className="grid gap-2 text-sm font-bold text-ink/70">
-              Email
-              <input className="min-h-12 rounded-md border border-line px-3 text-base text-ink" defaultValue="authority.demo@khelopath.local" />
-            </label>
-          </div>
           <AdminLoginForm />
         </section>
       </section>

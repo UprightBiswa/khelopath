@@ -49,7 +49,8 @@ DATABASE_URL=postgresql://...
 OPENAI_API_KEY=sk-...
 OPENAI_MODEL=gpt-5
 NEXT_PUBLIC_APP_URL=https://your-vercel-domain.vercel.app
-ADMIN_PASSWORD=use-a-strong-password
+ADMIN_EMAIL=admin@admin.com
+ADMIN_PASSWORD=12345678
 ADMIN_COOKIE_SECRET=use-a-long-random-value
 ```
 

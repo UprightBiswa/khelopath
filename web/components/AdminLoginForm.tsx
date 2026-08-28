@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 export function AdminLoginForm() {
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@admin.com");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
@@ -17,7 +18,7 @@ export function AdminLoginForm() {
     const response = await fetch("/api/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password })
+      body: JSON.stringify({ email, password })
     });
 
     setIsSubmitting(false);
@@ -34,11 +35,20 @@ export function AdminLoginForm() {
   return (
     <form className="mt-5 grid gap-4" onSubmit={onSubmit}>
       <label className="grid gap-2 text-sm font-bold text-ink/70">
+        Email
+        <input
+          className="min-h-12 rounded-md border border-line px-3 text-base text-ink"
+          onChange={(event) => setEmail(event.target.value)}
+          type="email"
+          value={email}
+        />
+      </label>
+      <label className="grid gap-2 text-sm font-bold text-ink/70">
         Password
         <input
           className="min-h-12 rounded-md border border-line px-3 text-base text-ink"
           onChange={(event) => setPassword(event.target.value)}
-          placeholder="Enter admin password"
+          placeholder="12345678"
           type="password"
           value={password}
         />
@@ -54,4 +64,3 @@ export function AdminLoginForm() {
     </form>
   );
 }
-

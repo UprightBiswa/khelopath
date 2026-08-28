@@ -10,9 +10,14 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <Link className="text-lg font-black text-forest" href="/">
             KheloPath
           </Link>
-          <Link href="/admin/login">
-            <Badge>Admin</Badge>
-          </Link>
+          <nav className="flex items-center gap-2">
+            <Link href="/login">
+              <Badge>Athlete login</Badge>
+            </Link>
+            <Link href="/admin/login">
+              <Badge>Admin</Badge>
+            </Link>
+          </nav>
         </div>
       </header>
       {children}
