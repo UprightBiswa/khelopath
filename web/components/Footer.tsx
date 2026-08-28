@@ -8,7 +8,7 @@ export function Footer() {
           <p className="text-lg font-black text-forest">KheloPath</p>
           <p className="mt-2 max-w-xl text-sm leading-6 text-ink/70">
             Independent prototype for helping athletes discover opportunities, understand eligibility, track applications,
-            and escalate issues with synthetic data.
+            and escalate issues.
           </p>
         </div>
         <div>
@@ -24,11 +24,10 @@ export function Footer() {
           <div className="mt-3 grid gap-2 text-sm font-semibold text-ink/70">
             <Link href="/admin/login">Admin login</Link>
             <span>Not an official service</span>
-            <span>No real identity or documents</span>
+            <span>Sample records only</span>
           </div>
         </div>
       </div>
     </footer>
   );
 }
-

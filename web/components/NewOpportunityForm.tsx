@@ -26,6 +26,7 @@ export function NewOpportunityForm() {
         eligibility: data.get("eligibility"),
         documents: String(data.get("documents")).split(",").map((item) => item.trim()).filter(Boolean),
         nextSteps: String(data.get("nextSteps")).split(",").map((item) => item.trim()).filter(Boolean),
+        image: data.get("image"),
         matchScore: Number(data.get("matchScore") ?? 80)
       })
     });
@@ -42,7 +43,8 @@ export function NewOpportunityForm() {
         ["district", "District", "Kamrup Metropolitan"],
         ["city", "City", "Guwahati"],
         ["organisationType", "Type", "Training Camp"],
-        ["matchScore", "Match score", "82"]
+        ["matchScore", "Match score", "82"],
+        ["image", "Image URL", "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80"]
       ].map(([name, label, value]) => (
         <label className="grid gap-2 text-sm font-bold text-ink/70" key={name}>
           {label}
@@ -53,7 +55,7 @@ export function NewOpportunityForm() {
         Description
         <textarea
           className="min-h-24 rounded-md border border-line p-3 text-base text-ink"
-          defaultValue="Synthetic district-level cycling opportunity for young athletes preparing for structured training."
+          defaultValue="District-level cycling opportunity for young athletes preparing for structured training."
           name="description"
         />
       </label>
@@ -91,4 +93,3 @@ export function NewOpportunityForm() {
     </form>
   );
 }
-

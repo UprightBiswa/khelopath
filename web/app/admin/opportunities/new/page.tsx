@@ -1,8 +1,14 @@
+import { redirect } from "next/navigation";
 import { NewOpportunityForm } from "@/components/NewOpportunityForm";
 import { Shell } from "@/components/Shell";
 import { StepHeader } from "@/components/StepHeader";
+import { isAdminSession } from "@/lib/admin-auth";
 
-export default function NewOpportunityPage() {
+export default async function NewOpportunityPage() {
+  if (!(await isAdminSession())) {
+    redirect("/admin/login");
+  }
+
   return (
     <Shell>
       <section className="mx-auto max-w-3xl px-5 py-10">

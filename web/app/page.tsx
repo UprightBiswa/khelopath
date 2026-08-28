@@ -10,7 +10,7 @@ export default function HomePage() {
       <section className="mx-auto grid max-w-6xl gap-10 px-5 py-10 md:grid-cols-[1.05fr_0.95fr] md:items-center md:py-16">
         <div className="space-y-7">
           <div className="inline-flex rounded-full border border-line bg-white px-3 py-1 text-sm font-bold text-forest">
-            Independent prototype - Not an official government service
+            Athlete-first sports opportunity navigator
           </div>
           <div className="space-y-4">
             <h1 className="text-4xl font-black leading-tight text-ink md:text-6xl">
@@ -24,9 +24,6 @@ export default function HomePage() {
             <ButtonLink href="/onboarding">
               Start
               <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-            </ButtonLink>
-            <ButtonLink href="/authority" variant="secondary">
-              Admin demo
             </ButtonLink>
           </div>
         </div>
@@ -79,9 +76,8 @@ export default function HomePage() {
             Built for production data later
           </h2>
           <p className="mt-3 max-w-3xl leading-7 text-ink/70">
-            Today the app ships with seeded synthetic records. In production, the same screens read from Neon PostgreSQL
-            through Next.js server routes, so opportunities, applications, and grievances can be managed without exposing
-            database credentials to the browser.
+            KheloPath reads opportunity, application, and grievance records from Neon PostgreSQL through Next.js server
+            routes. Database credentials stay server-side, while athletes only interact with simple public workflows.
           </p>
         </div>
       </section>

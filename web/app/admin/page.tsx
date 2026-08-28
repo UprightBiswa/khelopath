@@ -1,13 +1,20 @@
+import { redirect } from "next/navigation";
 import { CheckCircle2, Database, Plus, Route, UserCheck } from "lucide-react";
+import { AdminLogoutButton } from "@/components/AdminLogoutButton";
 import { ButtonLink } from "@/components/ButtonLink";
 import { Shell } from "@/components/Shell";
 import { StepHeader } from "@/components/StepHeader";
+import { isAdminSession } from "@/lib/admin-auth";
 import { authorityMetrics } from "@/lib/demo-data";
 import { listApplications, listGrievances, listOpportunities, listSportsCentres } from "@/lib/server-data";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
+  if (!(await isAdminSession())) {
+    redirect("/admin/login");
+  }
+
   const [applications, grievances, opportunities, centres] = await Promise.all([
     listApplications(),
     listGrievances(),
@@ -23,6 +30,9 @@ export default async function AdminPage() {
           title="KheloPath Authority Console"
           description="Manage seeded demo data, application status, grievance classification, and routing from one process view."
         />
+        <div className="mb-5 flex justify-end">
+          <AdminLogoutButton />
+        </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {authorityMetrics.map((metric) => (
             <div className="rounded-md border border-line bg-white p-5" key={metric.label}>

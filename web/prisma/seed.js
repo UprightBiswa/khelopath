@@ -42,7 +42,9 @@ async function main() {
 
   await prisma.sportsCentre.upsert({
     where: { id: "centre-guwahati-sai-cycling" },
-    update: {},
+    update: {
+      image: "/images/khelopath-cyclist-hero.png"
+    },
     create: {
       id: "centre-guwahati-sai-cycling",
       name: "Guwahati SAI Cycling Centre",
@@ -59,7 +61,15 @@ async function main() {
 
   const mainOpportunity = await prisma.opportunity.upsert({
     where: { id: "guwahati-sai-cycling" },
-    update: {},
+    update: {
+      description:
+        "Government-supported training pathway for cycling athletes in and around Guwahati.",
+      documents: ["Age proof", "Athlete profile", "Sports achievement record"],
+      nextSteps: ["Create athlete profile", "Submit demo application", "Verification", "Selection response"],
+      image: "/images/khelopath-cyclist-hero.png",
+      matchScore: 96,
+      status: "open"
+    },
     create: {
       id: "guwahati-sai-cycling",
       title: "Guwahati SAI Cycling Centre",
@@ -69,7 +79,7 @@ async function main() {
       district: "Kamrup Metropolitan",
       city: "Guwahati",
       description:
-        "Synthetic government-supported training pathway for cycling athletes in and around Guwahati.",
+        "Government-supported training pathway for cycling athletes in and around Guwahati.",
       organisationType: "Training Centre",
       eligibility:
         "Age 14-25, cycling interest or experience, Assam-based applicant, athlete profile required.",
@@ -83,14 +93,21 @@ async function main() {
 
   await prisma.opportunity.upsert({
     where: { id: "assam-cycling-academy" },
-    update: {},
+    update: {
+      description: "State-level cycling training and athlete development pathway.",
+      documents: ["Age proof", "Residence proof", "Basic sports record"],
+      nextSteps: ["Check district availability", "Submit interest", "Attend screening"],
+      image: "/images/khelopath-cyclist-hero.png",
+      matchScore: 88,
+      status: "open"
+    },
     create: {
       id: "assam-cycling-academy",
       title: "Assam State Sports Academy Cycling Programme",
       sport: "Cycling",
       sportId: "sport-cycling",
       state: "Assam",
-      description: "Synthetic state-level cycling training and athlete development pathway.",
+      description: "State-level cycling training and athlete development pathway.",
       organisationType: "Sports Academy",
       eligibility: "Cycling applicants from Assam with a basic sports achievement record preferred.",
       documents: ["Age proof", "Residence proof", "Basic sports record"],
@@ -163,7 +180,7 @@ async function main() {
 main()
   .then(async () => {
     await prisma.$disconnect();
-    console.log("Seeded KheloPath synthetic data.");
+    console.log("Seeded KheloPath sample data.");
   })
   .catch(async (error) => {
     console.error(error);

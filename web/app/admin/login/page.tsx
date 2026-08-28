@@ -1,5 +1,5 @@
 import { LockKeyhole, ShieldCheck } from "lucide-react";
-import { ButtonLink } from "@/components/ButtonLink";
+import { AdminLoginForm } from "@/components/AdminLoginForm";
 import { Shell } from "@/components/Shell";
 
 export default function AdminLoginPage() {
@@ -25,17 +25,10 @@ export default function AdminLoginPage() {
               Email
               <input className="min-h-12 rounded-md border border-line px-3 text-base text-ink" defaultValue="authority.demo@khelopath.local" />
             </label>
-            <label className="grid gap-2 text-sm font-bold text-ink/70">
-              Password
-              <input className="min-h-12 rounded-md border border-line px-3 text-base text-ink" defaultValue="demo-only" type="password" />
-            </label>
           </div>
-          <div className="mt-6">
-            <ButtonLink href="/admin">Enter demo console</ButtonLink>
-          </div>
+          <AdminLoginForm />
         </section>
       </section>
     </Shell>
   );
 }
-

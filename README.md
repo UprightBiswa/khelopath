@@ -53,3 +53,13 @@ The seed script creates synthetic records for the first demo. No real identity, 
 ## Deployment
 
 Use Vercel with `web` as the project root. See `docs/deployment.md`.
+
+Vercel settings:
+
+```text
+Framework Preset: Next.js
+Root Directory: web
+Build Command: npm run build
+Output Directory: leave empty / framework default
+Install Command: npm install
+```

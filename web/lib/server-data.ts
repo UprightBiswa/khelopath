@@ -1,6 +1,19 @@
 import { hasDatabaseUrl, prisma } from "@/lib/db";
 import { applications, grievances, opportunities, sportsCentres } from "@/lib/demo-data";
 
+type CentreWithSport = Awaited<ReturnType<typeof prisma.sportsCentre.findMany>>[number] & {
+  sport: { name: string };
+};
+
+type ApplicationWithRelations = Awaited<ReturnType<typeof prisma.application.findMany>>[number] & {
+  opportunity: { title: string };
+  user: { name: string; city: string };
+};
+
+type GrievanceWithRelations = Awaited<ReturnType<typeof prisma.grievance.findMany>>[number] & {
+  user: { city: string; state: string };
+};
+
 export async function listOpportunities() {
   if (!hasDatabaseUrl()) {
     return opportunities;
@@ -38,7 +51,7 @@ export async function listSportsCentres() {
       include: { sport: true },
       orderBy: { name: "asc" }
     });
-    return centres.map((centre) => ({
+    return (centres as CentreWithSport[]).map((centre) => ({
       ...centre,
       sport: centre.sport.name
     }));
@@ -57,7 +70,7 @@ export async function listApplications() {
       include: { opportunity: true, user: true },
       orderBy: { submittedAt: "desc" }
     });
-    return records.map((application) => ({
+    return (records as ApplicationWithRelations[]).map((application) => ({
       ...application,
       opportunityTitle: application.opportunity.title,
       athleteName: application.user.name,
@@ -78,7 +91,7 @@ export async function listGrievances() {
       include: { application: true, user: true },
       orderBy: { createdAt: "desc" }
     });
-    return records.map((grievance) => ({
+    return (records as GrievanceWithRelations[]).map((grievance) => ({
       ...grievance,
       city: grievance.user.city,
       state: grievance.user.state

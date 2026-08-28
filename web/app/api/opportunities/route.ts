@@ -1,4 +1,5 @@
 import { ok } from "@/lib/api-response";
+import { isAdminSession } from "@/lib/admin-auth";
 import { hasDatabaseUrl, prisma } from "@/lib/db";
 import { listOpportunities } from "@/lib/server-data";
 import { z } from "zod";
@@ -14,6 +15,7 @@ const opportunitySchema = z.object({
   eligibility: z.string().min(10),
   documents: z.array(z.string()).default(["Age proof", "Athlete profile"]),
   nextSteps: z.array(z.string()).default(["Create athlete profile", "Submit application"]),
+  image: z.string().url().optional().or(z.literal("")),
   matchScore: z.number().min(0).max(100).default(80)
 });
 
@@ -22,6 +24,10 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  if (!(await isAdminSession())) {
+    return Response.json({ ok: false, message: "Admin login required" }, { status: 401 });
+  }
+
   const body = await request.json().catch(() => ({}));
   const parsed = opportunitySchema.parse(body);
   const id = parsed.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -34,7 +40,7 @@ export async function POST(request: Request) {
         create: {
           id,
           ...parsed,
-          image: "/images/khelopath-cyclist-hero.png",
+          image: parsed.image || "/images/khelopath-cyclist-hero.png",
           status: "open"
         }
       });
@@ -47,7 +53,7 @@ export async function POST(request: Request) {
   return ok({
     id,
     ...parsed,
-    image: "/images/khelopath-cyclist-hero.png",
+    image: parsed.image || "/images/khelopath-cyclist-hero.png",
     status: "open",
     saved: false,
     note: "Returned synthetic response because database is not ready."
